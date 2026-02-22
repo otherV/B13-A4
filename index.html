@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 PH Job Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body class="bg-soft-blue font-geist py-3">
+
+    <section id="overview" class="mx-auto max-w-8/10 py-3">
+        <h1>Job Application Tracker</h1>
+
+        <div class="flex justify-center gap-x-4">
+            <div class="card card-border bg-base-100 w-96">
+                <div class="card-body">
+                    <p>Total</p>
+                    <h2 class="card-title">8</h2>
+                </div>
+            </div>
+
+            <div class="card card-border bg-base-100 w-96">
+                <div class="card-body">
+                    <p>Interview</p>
+                    <h2 class="card-title text-accent">0</h2>
+                </div>
+            </div>
+
+            <div class="card card-border bg-base-100 w-96">
+                <div class="card-body">
+                    <p>Rejected</p>
+                    <h2 class="card-title text-secondary">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- <hr class="w-full border-[1px] opacity-5 mt-3"> -->
+    </section>
+
+    <section id="joblist" class="mx-auto max-w-8/10 py-3">
+
+        <div class="w-full flex justify-between">
+
+            <div>
+                <h3>Available Jobs</h3>
+            </div>
+            <div>
+                <p>8 jobs</p>
+            </div>
+
+        </div>
+
+
+        <div class="w-full tabs tabs-box">
+            <input type="radio" name="my_tabs_6" class="tab" aria-label="Tab 1" />
+            <div class="tab-content bg-base-100 border-base-300 p-6">
+                <ul class="list bg-base-100 rounded-box shadow-md">
+
+                    <li class="list-row">
+
+                        <div class="list-col-grow">
+                            <div>
+                                <div class="text-xs uppercase font-semibold opacity-60">Mobile First Corp</div>
+                                <div>React Native Developer</div>
+                            </div>
+                            <p class="list-col-wrap text-xs">
+                                Remote • Full-time • $130,000 - $175,000
+                            </p>
+                        </div>
+
+                        <button class="btn btn-circle btn-ghost">
+                            <svg fill="#000000" width="16px" height="16px" viewBox="0 0 0.48 0.48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.38 0.12v0.25A0.05 0.05 0 0 1 0.33 0.42h-0.18A0.05 0.05 0 0 1 0.1 0.37V0.12H0.09a0.01 0.01 0 0 1 0 -0.02H0.18V0.09A0.03 0.03 0 0 1 0.21 0.06h0.06A0.03 0.03 0 0 1 0.3 0.09V0.1h0.09a0.01 0.01 0 1 1 0 0.02zm-0.26 0v0.25A0.03 0.03 0 0 0 0.15 0.4h0.18A0.03 0.03 0 0 0 0.36 0.37V0.12zM0.28 0.1V0.09A0.01 0.01 0 0 0 0.27 0.08h-0.06A0.01 0.01 0 0 0 0.2 0.09V0.1zm0 0.09a0.01 0.01 0 1 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0zm-0.1 0a0.01 0.01 0 0 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0z" />
+                            </svg>
+                        </button>
+                        
+                    </li>
+
+                </ul>
+            </div>
+
+            <input type="radio" name="my_tabs_6" class="tab" aria-label="Tab 2" checked="checked" />
+            <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+
+            <input type="radio" name="my_tabs_6" class="tab" aria-label="Tab 3" />
+            <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>
