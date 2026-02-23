@@ -93,17 +93,18 @@ const jobListUl = document.querySelector('#job-list');
 
 for (const job of jobsList) {
     let li = document.createElement('li');
+    li.id = "job-" + job.id;
     li.className = "bg-white list-row p-6 mt-4";
     li.innerHTML = `<div class="list-col-grow">
 
                         <div class="list-title">
-                            <h4 class="company-name text-lg font-semibold color-black mb-1">Mobile First Corp</h4>
-                            <p class="position text-base">React Native Developer</p>
+                            <h4 class="company-name text-lg font-semibold color-black mb-1">${job.companyName}</h4>
+                            <p class="position text-base">${job.position}</p>
                         </div>
 
                         <p class="list-info mt-5 text-sm">
-                            <span class="location">Remote</span> • <span class="type">Full-time</span> • $<span
-                                class="salary-min">130,000</span> - $<span class="salary-max">175,000</span>
+                            <span class="location">${job.location}</span> • <span class="type">${job.type}</span> • $<span
+                                class="salary-min">${job.salaryMin}</span> - $<span class="salary-max">${job.salaryMax}</span>
                         </p>
 
                         <div class="mt-5">
@@ -113,7 +114,7 @@ for (const job of jobsList) {
                                 </span>
                             </p>
                             <p class="list-col-wrap text-xs color-DGray text-sm">
-                                Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.
+                                ${job.description}
                             </p>
                         </div>
                         <div class="mt-5 flex gap-x-2">
@@ -122,7 +123,7 @@ for (const job of jobsList) {
                         </div>
                     </div>
 
-                    <button class="trash-btn btn btn-circle bg-white hover:bg-red-100 border-[1px]">
+                    <button id="${job.id}" class="trash-btn btn btn-circle bg-white hover:bg-red-100 border-[1px]">
                         <svg fill="#000000" width="16px" height="16px" viewBox="0 0 0.48 0.48"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
