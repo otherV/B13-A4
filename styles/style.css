@@ -3,6 +3,26 @@
     font-optical-sizing: auto;
 }
 
+.color-bnb{
+    color: #002C5C;
+}
+
 .bg-soft-blue{
     background: #EEF4FF;
+}
+
+.badge {
+    background: #EEF4FF;
+    color: #002C5C;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+#tab-nav > button{
+    background: white;
+}
+
+#tab-nav > button:active{
+    background: #3b82f6;
 }

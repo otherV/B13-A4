@@ -15,7 +15,7 @@
 
 <body class="bg-soft-blue font-geist py-3">
 
-    <section id="overview" class="mx-auto max-w-8/10 py-3">
+    <section id="overview" class="mx-auto max-w-5/7 py-3">
         <h1>Job Application Tracker</h1>
 
         <div class="flex justify-center gap-x-4">
@@ -44,9 +44,9 @@
         <!-- <hr class="w-full border-[1px] opacity-5 mt-3"> -->
     </section>
 
-    <section id="joblist" class="mx-auto max-w-8/10 py-3">
+    <section id="joblist" class="mx-auto max-w-5/7 py-3">
 
-        <div class="w-full flex justify-between">
+        <div class="w-full flex justify-between mb-2">
 
             <div>
                 <h3>Available Jobs</h3>
@@ -55,24 +55,38 @@
                 <p>8 jobs</p>
             </div>
 
+            
+
+        </div>
+        
+        <div class="w-full">
+            <div class="tabs flex gap-x-2">
+                <input type="radio" name="my_tabs_1" class="tab bg-white" aria-label="All" />
+                <input type="radio" name="my_tabs_1" class="tab bg-white" aria-label="Interview" checked="checked" />
+                <input type="radio" name="my_tabs_1" class="tab bg-white" aria-label="Rejected" />
+            </div>
         </div>
 
 
-        <div class="w-full tabs tabs-box">
-            <input type="radio" name="my_tabs_6" class="tab" aria-label="Tab 1" />
-            <div class="tab-content bg-base-100 border-base-300 p-6">
-                <ul class="list bg-base-100 rounded-box shadow-md">
+        <div class="w-full">
+            
+                <ul class="list bg-base-100 rounded-box">
 
                     <li class="list-row">
 
                         <div class="list-col-grow">
-                            <div>
-                                <div class="text-xs uppercase font-semibold opacity-60">Mobile First Corp</div>
-                                <div>React Native Developer</div>
-                            </div>
+                            
+                            <p class="color-bnb font-semibold">Mobile First Corp</p>
+                            <p>React Native Developer</p>
                             <p class="list-col-wrap text-xs">
                                 Remote • Full-time • $130,000 - $175,000
                             </p>
+                            <span class="badge py-4 px-8">NOT APPLIED</span>
+                            <p class="list-col-wrap text-xs">
+                                Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.
+                            </p>
+                            <button class="btn btn-outline btn-success">Interview</button>
+                            <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
 
                         <button class="btn btn-circle btn-ghost">
@@ -82,17 +96,12 @@
                                     d="M0.38 0.12v0.25A0.05 0.05 0 0 1 0.33 0.42h-0.18A0.05 0.05 0 0 1 0.1 0.37V0.12H0.09a0.01 0.01 0 0 1 0 -0.02H0.18V0.09A0.03 0.03 0 0 1 0.21 0.06h0.06A0.03 0.03 0 0 1 0.3 0.09V0.1h0.09a0.01 0.01 0 1 1 0 0.02zm-0.26 0v0.25A0.03 0.03 0 0 0 0.15 0.4h0.18A0.03 0.03 0 0 0 0.36 0.37V0.12zM0.28 0.1V0.09A0.01 0.01 0 0 0 0.27 0.08h-0.06A0.01 0.01 0 0 0 0.2 0.09V0.1zm0 0.09a0.01 0.01 0 1 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0zm-0.1 0a0.01 0.01 0 0 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0z" />
                             </svg>
                         </button>
-                        
+
                     </li>
 
                 </ul>
-            </div>
 
-            <input type="radio" name="my_tabs_6" class="tab" aria-label="Tab 2" checked="checked" />
-            <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
 
-            <input type="radio" name="my_tabs_6" class="tab" aria-label="Tab 3" />
-            <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
         </div>
 
 
