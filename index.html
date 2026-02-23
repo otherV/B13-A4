@@ -13,99 +13,113 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
-<body class="bg-soft-blue font-geist py-3">
+<body class="bg-soft-blue font-geist color-Gray py-8">
 
-    <section id="overview" class="mx-auto max-w-5/7 py-3">
-        <h1>Job Application Tracker</h1>
+    <section id="overview" class="mx-auto max-w-5/7 py-8 color-DGray">
+        <h1 class="text-4xl font-bold mb-5 color-black">Job Application Tracker</h1>
 
         <div class="flex justify-center gap-x-4">
-            <div class="card card-border bg-base-100 w-96">
+            <div class="card card-border bg-white w-96">
                 <div class="card-body">
-                    <p>Total</p>
-                    <h2 class="card-title">8</h2>
+                    <p class="color-DGray text-sm">Total</p>
+                    <h2 class="card-title color-black text-2xl">8</h2>
                 </div>
             </div>
 
-            <div class="card card-border bg-base-100 w-96">
+            <div class="card card-border bg-white w-96">
                 <div class="card-body">
-                    <p>Interview</p>
-                    <h2 class="card-title text-accent">0</h2>
+                    <p class="color-DGray text-sm">Interview</p>
+                    <h2 class="card-title text-accent text-2xl">0</h2>
                 </div>
             </div>
 
-            <div class="card card-border bg-base-100 w-96">
+            <div class="card card-border bg-white w-96">
                 <div class="card-body">
-                    <p>Rejected</p>
-                    <h2 class="card-title text-secondary">0</h2>
+                    <p class="color-DGray text-sm">Rejected</p>
+                    <h2 class="card-title text-secondary text-2xl">0</h2>
                 </div>
             </div>
         </div>
-
-        <!-- <hr class="w-full border-[1px] opacity-5 mt-3"> -->
     </section>
+    <hr class="mx-auto max-w-5/7 border-[1px] opacity-6">
+    <section id="joblist" class="mx-auto max-w-5/7 py-8">
 
-    <section id="joblist" class="mx-auto max-w-5/7 py-3">
-
-        <div class="w-full flex justify-between mb-2">
-
+        <div class="w-full flex justify-between mb-6">
             <div>
-                <h3>Available Jobs</h3>
+                <h3 class="text-xl font-semibold color-black">Available Jobs</h3>
             </div>
             <div>
                 <p>8 jobs</p>
             </div>
-
-            
-
         </div>
-        
+
         <div class="w-full">
-            <div class="tabs flex gap-x-2">
-                <input type="radio" name="my_tabs_1" class="tab bg-white" aria-label="All" />
-                <input type="radio" name="my_tabs_1" class="tab bg-white" aria-label="Interview" checked="checked" />
-                <input type="radio" name="my_tabs_1" class="tab bg-white" aria-label="Rejected" />
+            <div id="stat-filter" class="tabs flex gap-x-2">
+                <input type="radio" name="my_tabs_1"
+                    class="filter tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2" aria-label="All" />
+                <input type="radio" name="my_tabs_1"
+                    class="filter tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2"
+                    aria-label="Interview" checked="checked" />
+                <input type="radio" name="my_tabs_1"
+                    class="filter tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2"
+                    aria-label="Rejected" />
             </div>
         </div>
 
 
         <div class="w-full">
-            
-                <ul class="list bg-base-100 rounded-box">
 
-                    <li class="list-row">
+            <ul class="list">
 
-                        <div class="list-col-grow">
-                            
-                            <p class="color-bnb font-semibold">Mobile First Corp</p>
-                            <p>React Native Developer</p>
-                            <p class="list-col-wrap text-xs">
-                                Remote • Full-time • $130,000 - $175,000
-                            </p>
-                            <span class="badge py-4 px-8">NOT APPLIED</span>
-                            <p class="list-col-wrap text-xs">
-                                Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.
-                            </p>
-                            <button class="btn btn-outline btn-success">Interview</button>
-                            <button class="btn btn-outline btn-error">Rejected</button>
+                <li class="bg-white list-row p-6 mt-4">
+
+                    <div class="list-col-grow">
+
+                        <div class="list-title">
+                            <h4 class="company-name text-lg font-semibold color-black mb-1">Mobile First Corp</h4>
+                            <p class="position text-base">React Native Developer</p>
                         </div>
 
-                        <button class="btn btn-circle btn-ghost">
-                            <svg fill="#000000" width="16px" height="16px" viewBox="0 0 0.48 0.48"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.38 0.12v0.25A0.05 0.05 0 0 1 0.33 0.42h-0.18A0.05 0.05 0 0 1 0.1 0.37V0.12H0.09a0.01 0.01 0 0 1 0 -0.02H0.18V0.09A0.03 0.03 0 0 1 0.21 0.06h0.06A0.03 0.03 0 0 1 0.3 0.09V0.1h0.09a0.01 0.01 0 1 1 0 0.02zm-0.26 0v0.25A0.03 0.03 0 0 0 0.15 0.4h0.18A0.03 0.03 0 0 0 0.36 0.37V0.12zM0.28 0.1V0.09A0.01 0.01 0 0 0 0.27 0.08h-0.06A0.01 0.01 0 0 0 0.2 0.09V0.1zm0 0.09a0.01 0.01 0 1 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0zm-0.1 0a0.01 0.01 0 0 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0z" />
-                            </svg>
-                        </button>
+                        <p class="list-info mt-5 text-sm">
+                            <span class="location">Remote</span> • <span class="type">Full-time</span> • $<span
+                                class="salary-min">130,000</span> - $<span class="salary-max">175,000</span>
+                        </p>
 
-                    </li>
+                        <div class="mt-5">
+                            <p class="mb-3">
+                                <span class="non-applied text-sm font-medium uppercase rounded-sm w-28 h-9 px-3 py-2">
+                                    NOT APPLIED
+                                </span>
+                            </p>
+                            <p class="list-col-wrap text-xs color-DGray text-sm">
+                                Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.
+                            </p>
+                        </div>
+                        <div class="mt-5 flex gap-x-2">
+                            <button class="btn btn-outline btn-success text-sm font-semibold uppercase">Interview</button>
+                            <button class="btn btn-outline btn-error text-sm font-semibold uppercase">Rejected</button>
+                        </div>
+                    </div>
 
-                </ul>
+                    <button class="btn btn-circle bg-white hover:bg-red-100 border-[1px]">
+                        <svg fill="#000000" width="16px" height="16px" viewBox="0 0 0.48 0.48"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0.38 0.12v0.25A0.05 0.05 0 0 1 0.33 0.42h-0.18A0.05 0.05 0 0 1 0.1 0.37V0.12H0.09a0.01 0.01 0 0 1 0 -0.02H0.18V0.09A0.03 0.03 0 0 1 0.21 0.06h0.06A0.03 0.03 0 0 1 0.3 0.09V0.1h0.09a0.01 0.01 0 1 1 0 0.02zm-0.26 0v0.25A0.03 0.03 0 0 0 0.15 0.4h0.18A0.03 0.03 0 0 0 0.36 0.37V0.12zM0.28 0.1V0.09A0.01 0.01 0 0 0 0.27 0.08h-0.06A0.01 0.01 0 0 0 0.2 0.09V0.1zm0 0.09a0.01 0.01 0 1 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0zm-0.1 0a0.01 0.01 0 0 1 0.02 0v0.14a0.01 0.01 0 1 1 -0.02 0z" />
+                        </svg>
+                    </button>
+
+                </li>
+
+            </ul>
 
 
         </div>
 
 
     </section>
+
+    <script src="./scripts/script.js"></script>
 
 </body>
 
