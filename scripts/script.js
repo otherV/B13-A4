@@ -133,3 +133,11 @@ for (const job of jobsList) {
 
     jobListUl.appendChild(li);
 }
+
+const trashButtons = document.querySelectorAll('.trash-btn');
+
+for (const button of trashButtons) {
+    button.addEventListener('click', function() {
+        jobListUl.removeChild(document.querySelector('#job-'+this.id))
+    });
+}
