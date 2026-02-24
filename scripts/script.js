@@ -119,17 +119,20 @@ function updateStats() {
         default:
             break;
     }
-
 }
 
 const jobListUl = document.querySelector('#job-list');
 
 function injectLists(jobArray) {
     jobListUl.innerHTML = "";
+    // if(jobArray.length === 0){
+
+    // }
     for (const job of jobArray) {
         let li = document.createElement('li');
         li.id = "job-" + job.id;
         li.className = "bg-white list-row p-6 mt-4";
+        let checkedValue = `checked="checked"`;
         let nonAppStr = "";
         if (job.status === "not applied") {
             nonAppStr = `<span id="non-${job.id}" class="non-applied text-sm font-medium uppercase rounded-sm w-28 h-9 px-3 py-2">
@@ -159,10 +162,10 @@ function injectLists(jobArray) {
                         <div id="status-toggle-group" class="mt-5 tabs flex gap-x-2">
                             <input id="interview-toggle" type="radio" name="${job.id}"
                                 class="status-toggle btn btn-outline btn-success text-sm font-semibold uppercase"
-                                aria-label="Interview" />
+                                aria-label="Interview" ${(job.status=="interview") ? checkedValue : ""} />
                             <input id="rejected-toggle" type="radio" name="${job.id}"
                                 class="status-toggle btn btn-outline btn-error text-sm font-semibold uppercase"
-                                aria-label="Rejected" />
+                                aria-label="Rejected" ${(job.status=="rejected") ? checkedValue : ""} />
                         </div>
                     </div>
 
@@ -176,38 +179,38 @@ function injectLists(jobArray) {
 
         jobListUl.appendChild(li);
     }
-const trashButtons = document.querySelectorAll('.trash-btn');
+    let trashButtons = document.querySelectorAll('.trash-btn');
 
-for (const button of trashButtons) {
-    button.addEventListener('click', function () {
-        jobListUl.removeChild(document.querySelector('#job-' + this.id));
-        jobsList = jobsList.filter(job => job.id != this.id);
-        updateStats();
-    });
-}
+    for (const button of trashButtons) {
+        button.addEventListener('click', function () {
+            jobListUl.removeChild(document.querySelector('#job-' + this.id));
+            jobsList = jobsList.filter(job => job.id != this.id);
+            updateStats();
+        });
+    }
 
-const statusToggle = document.querySelectorAll('.status-toggle');
+    let statusToggle = document.querySelectorAll('.status-toggle');
 
-for (const button of statusToggle) {
-    button.addEventListener('click', function () {
-        if (this.id == "interview-toggle") {
-            jobsList.find(job => job.id == this.name).status = "interview";
-            if(document.querySelector('#stat-filter > input[type="radio"]:checked').id == "rejected") {
-                document.querySelector('#job-' + this.name).remove();
+    for (const button of statusToggle) {
+        button.addEventListener('click', function () {
+            if (this.id == "interview-toggle") {
+                jobsList.find(job => job.id == this.name).status = "interview";
+                if (document.querySelector('#stat-filter > input[type="radio"]:checked').id == "rejected") {
+                    document.querySelector('#job-' + this.name).remove();
+                }
+            } else {
+                jobsList.find(job => job.id == this.name).status = "rejected";
+                if (document.querySelector('#stat-filter > input[type="radio"]:checked').id == "interview") {
+                    document.querySelector('#job-' + this.name).remove();
+                }
             }
-        } else {
-            jobsList.find(job => job.id == this.name).status = "rejected";
-            if(document.querySelector('#stat-filter > input[type="radio"]:checked').id == "interview") {
-                document.querySelector('#job-' + this.name).remove();
+            updateStats();
+            let nonApp = document.querySelector('#non-' + this.name);
+            if (nonApp) {
+                nonApp.remove();
             }
-        }
-        updateStats();
-        let nonApp = document.querySelector('#non-' + this.name);
-        if (nonApp) {
-            nonApp.remove();
-        }
-    });
-}
+        });
+    }
 }
 
 injectLists(jobsList);
