@@ -126,10 +126,9 @@ const jobListUl = document.querySelector('#job-list');
 
 function injectLists(jobArray) {
     jobListUl.innerHTML = "";
-    if (filteCount.innerHTML == "0") {
-        let li = document.createElement('li');
-        li.className = "h-96 bg-white list-row px-15 py-10 mt-4 flex justify-center items-center";
-        li.innerHTML = `<div class="text-center">
+    let emptyLi = document.createElement('li');
+    emptyLi.className = "h-96 bg-white list-row px-15 py-10 mt-4 mb-18 flex justify-center items-center";
+    emptyLi.innerHTML = `<div class="text-center">
 
                         <div class="list-icon flex justify-center items-center">
                             <img class="w-24 h-24" src="./assets/no_job.webp" alt="">
@@ -141,7 +140,8 @@ function injectLists(jobArray) {
                         </div>
                         
                     </div>`;
-        jobListUl.appendChild(li);
+    if (filteCount.innerHTML == "0") {
+        jobListUl.appendChild(emptyLi);
         return;
     }
     for (const job of jobArray) {
@@ -203,21 +203,7 @@ function injectLists(jobArray) {
             jobsList = jobsList.filter(job => job.id != this.id);
             updateStats();
             if (filteCount.innerHTML == "0") {
-                let li = document.createElement('li');
-                li.className = "h-96 bg-white list-row px-15 py-10 mt-4 flex justify-center items-center";
-                li.innerHTML = `<div class="text-center">
-
-                        <div class="list-icon flex justify-center items-center">
-                            <img class="w-24 h-24" src="./assets/no_job.webp" alt="">
-                        </div>
-
-                        <div class="list-title mt-5">
-                            <h4 class="text-2xl font-semibold color-black mb-1">No jobs available</h4>
-                            <p class="text-base">Check back soon for new job opportunities</p>
-                        </div>
-                        
-                    </div>`;
-                jobListUl.appendChild(li);
+                jobListUl.appendChild(emptyLi);
                 return;
             }
         });
@@ -244,26 +230,9 @@ function injectLists(jobArray) {
             }
             updateStats();
             if (filteCount.innerHTML == "0") {
-                let li = document.createElement('li');
-                li.className = "h-96 bg-white list-row px-15 py-10 mt-4 flex justify-center items-center";
-                li.innerHTML = `<div class="text-center">
-
-                        <div class="list-icon flex justify-center items-center">
-                            <img class="w-24 h-24" src="./assets/no_job.webp" alt="">
-                        </div>
-
-                        <div class="list-title mt-5">
-                            <h4 class="text-2xl font-semibold color-black mb-1">No jobs available</h4>
-                            <p class="text-base">Check back soon for new job opportunities</p>
-                        </div>
-                        
-                    </div>`;
-                jobListUl.appendChild(li);
+                jobListUl.appendChild(emptyLi);
                 return;
             }
-
-
-
         });
     }
 }

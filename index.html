@@ -15,28 +15,28 @@
 
 <body class="min-h-screen bg-soft-blue font-geist color-Gray py-8">
 
-    <section id="overview" class="mx-auto max-w-5/7 py-8 color-DGray">
+    <section id="overview" class="text-center sm:text-start mx-auto max-w-5/7 py-8 color-DGray">
         <h1 class="text-4xl font-bold mb-5 color-black">Job Application Tracker</h1>
 
-        <div class="flex justify-center gap-x-4">
-            <div class="card card-border bg-white w-96">
+        <div class="flex flex-row justify-center sm:gap-x-4">
+            <div class="card sm:card-border bg-none sm:bg-white sm:w-96">
                 <div class="card-body">
-                    <p class="color-DGray text-sm">Total</p>
-                    <h2 class="card-title color-black text-2xl"><span id="total-count">8</span></h2>
+                    <p class="color-DGray text-sm font-semibold sm:font-medium">Total</p>
+                    <h2 id="total-count" class="font-semibold sm:card-title color-black text-2xl">8</h2>
                 </div>
             </div>
 
-            <div class="card card-border bg-white w-96">
+            <div class="card sm:card-border bg-none sm:bg-white sm:w-96">
                 <div class="card-body">
-                    <p class="color-DGray text-sm">Interview</p>
-                    <h2 class="card-title text-accent text-2xl"><span id="interview-count">0</span></h2>
+                    <p class="color-DGray text-sm font-semibold sm:font-medium">Interview</p>
+                    <h2 id="interview-count" class="font-semibold sm:card-title text-accent text-2xl">0</h2>
                 </div>
             </div>
 
-            <div class="card card-border bg-white w-96">
+            <div class="card sm:card-border bg-none sm:bg-white sm:w-96">
                 <div class="card-body">
-                    <p class="color-DGray text-sm">Rejected</p>
-                    <h2 class="card-title text-secondary text-2xl"><span id="rejected-count">0</span></h2>
+                    <p class="color-DGray text-sm font-semibold sm:font-medium">Rejected</p>
+                    <h2 id="rejected-count" class="font-semibold sm:card-title text-secondary text-2xl">0</h2>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="w-full">
+        <div class="w-full flex justify-center sm:justify-start">
             <div id="stat-filter" class="tabs flex gap-x-2">
                 <input id="all" type="radio" name="my_tabs_1"
                     class="filter-btn tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2" aria-label="All"
