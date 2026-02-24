@@ -91,6 +91,7 @@ let jobsList = [
 
 let interview = [];
 let rejected = [];
+let currentTab = "all";
 
 const totalCount = document.querySelector('#total-count');
 const interviewCount = document.querySelector('#interview-count');
@@ -106,7 +107,7 @@ function updateStats() {
     interviewCount.innerHTML = interview.length;
     rejectedCount.innerHTML = rejected.length;
 
-    switch (document.querySelector('#stat-filter > input[type="radio"]:checked').id) {
+    switch (currentTab) {
         case "all":
             filteCount.innerHTML = jobsList.length;
             break;
@@ -125,9 +126,24 @@ const jobListUl = document.querySelector('#job-list');
 
 function injectLists(jobArray) {
     jobListUl.innerHTML = "";
-    // if(jobArray.length === 0){
+    if (filteCount.innerHTML == "0") {
+        let li = document.createElement('li');
+        li.className = "h-96 bg-white list-row px-15 py-10 mt-4 flex justify-center items-center";
+        li.innerHTML = `<div class="text-center">
 
-    // }
+                        <div class="list-icon flex justify-center items-center">
+                            <img class="w-24 h-24" src="./assets/no_job.webp" alt="">
+                        </div>
+
+                        <div class="list-title mt-5">
+                            <h4 class="text-2xl font-semibold color-black mb-1">No jobs available</h4>
+                            <p class="text-base">Check back soon for new job opportunities</p>
+                        </div>
+                        
+                    </div>`;
+        jobListUl.appendChild(li);
+        return;
+    }
     for (const job of jobArray) {
         let li = document.createElement('li');
         li.id = "job-" + job.id;
@@ -162,10 +178,10 @@ function injectLists(jobArray) {
                         <div id="status-toggle-group" class="mt-5 tabs flex gap-x-2">
                             <input id="interview-toggle" type="radio" name="${job.id}"
                                 class="status-toggle btn btn-outline btn-success text-sm font-semibold uppercase"
-                                aria-label="Interview" ${(job.status=="interview") ? checkedValue : ""} />
+                                aria-label="Interview" ${(job.status == "interview") ? checkedValue : ""} />
                             <input id="rejected-toggle" type="radio" name="${job.id}"
                                 class="status-toggle btn btn-outline btn-error text-sm font-semibold uppercase"
-                                aria-label="Rejected" ${(job.status=="rejected") ? checkedValue : ""} />
+                                aria-label="Rejected" ${(job.status == "rejected") ? checkedValue : ""} />
                         </div>
                     </div>
 
@@ -186,6 +202,24 @@ function injectLists(jobArray) {
             jobListUl.removeChild(document.querySelector('#job-' + this.id));
             jobsList = jobsList.filter(job => job.id != this.id);
             updateStats();
+            if (filteCount.innerHTML == "0") {
+                let li = document.createElement('li');
+                li.className = "h-96 bg-white list-row px-15 py-10 mt-4 flex justify-center items-center";
+                li.innerHTML = `<div class="text-center">
+
+                        <div class="list-icon flex justify-center items-center">
+                            <img class="w-24 h-24" src="./assets/no_job.webp" alt="">
+                        </div>
+
+                        <div class="list-title mt-5">
+                            <h4 class="text-2xl font-semibold color-black mb-1">No jobs available</h4>
+                            <p class="text-base">Check back soon for new job opportunities</p>
+                        </div>
+                        
+                    </div>`;
+                jobListUl.appendChild(li);
+                return;
+            }
         });
     }
 
@@ -195,20 +229,41 @@ function injectLists(jobArray) {
         button.addEventListener('click', function () {
             if (this.id == "interview-toggle") {
                 jobsList.find(job => job.id == this.name).status = "interview";
-                if (document.querySelector('#stat-filter > input[type="radio"]:checked').id == "rejected") {
+                if (currentTab == "rejected") {
                     document.querySelector('#job-' + this.name).remove();
                 }
             } else {
                 jobsList.find(job => job.id == this.name).status = "rejected";
-                if (document.querySelector('#stat-filter > input[type="radio"]:checked').id == "interview") {
+                if (currentTab == "interview") {
                     document.querySelector('#job-' + this.name).remove();
                 }
             }
-            updateStats();
             let nonApp = document.querySelector('#non-' + this.name);
             if (nonApp) {
                 nonApp.remove();
             }
+            updateStats();
+            if (filteCount.innerHTML == "0") {
+                let li = document.createElement('li');
+                li.className = "h-96 bg-white list-row px-15 py-10 mt-4 flex justify-center items-center";
+                li.innerHTML = `<div class="text-center">
+
+                        <div class="list-icon flex justify-center items-center">
+                            <img class="w-24 h-24" src="./assets/no_job.webp" alt="">
+                        </div>
+
+                        <div class="list-title mt-5">
+                            <h4 class="text-2xl font-semibold color-black mb-1">No jobs available</h4>
+                            <p class="text-base">Check back soon for new job opportunities</p>
+                        </div>
+                        
+                    </div>`;
+                jobListUl.appendChild(li);
+                return;
+            }
+
+
+
         });
     }
 }
@@ -222,14 +277,17 @@ for (const button of filterButtons) {
     button.addEventListener('click', function () {
         switch (this.id) {
             case "all":
+                currentTab = "all";
                 filteCount.innerHTML = jobsList.length;
                 injectLists(jobsList);
                 break;
             case "interview":
+                currentTab = "interview";
                 filteCount.innerHTML = interview.length;
                 injectLists(interview);
                 break;
             case "rejected":
+                currentTab = "rejected";
                 filteCount.innerHTML = rejected.length;
                 injectLists(rejected);
                 break;
