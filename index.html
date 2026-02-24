@@ -22,21 +22,21 @@
             <div class="card card-border bg-white w-96">
                 <div class="card-body">
                     <p class="color-DGray text-sm">Total</p>
-                    <h2 class="card-title color-black text-2xl">8</h2>
+                    <h2 class="card-title color-black text-2xl"><span id="total-count">8</span></h2>
                 </div>
             </div>
 
             <div class="card card-border bg-white w-96">
                 <div class="card-body">
                     <p class="color-DGray text-sm">Interview</p>
-                    <h2 class="card-title text-accent text-2xl">0</h2>
+                    <h2 class="card-title text-accent text-2xl"><span id="interview-count">0</span></h2>
                 </div>
             </div>
 
             <div class="card card-border bg-white w-96">
                 <div class="card-body">
                     <p class="color-DGray text-sm">Rejected</p>
-                    <h2 class="card-title text-secondary text-2xl">0</h2>
+                    <h2 class="card-title text-secondary text-2xl"><span id="rejected-count">0</span></h2>
                 </div>
             </div>
         </div>
@@ -49,19 +49,20 @@
                 <h3 class="text-xl font-semibold color-black">Available Jobs</h3>
             </div>
             <div>
-                <p class="text-base font-medium">8 jobs</p>
+                <p class="text-base font-medium"><span id="filter-count">8</span> jobs</p>
             </div>
         </div>
 
         <div class="w-full">
             <div id="stat-filter" class="tabs flex gap-x-2">
-                <input type="radio" name="my_tabs_1"
-                    class="filter tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2" aria-label="All" />
-                <input type="radio" name="my_tabs_1"
-                    class="filter tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2"
-                    aria-label="Interview" checked="checked" />
-                <input type="radio" name="my_tabs_1"
-                    class="filter tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2"
+                <input id="all" type="radio" name="my_tabs_1"
+                    class="filter-btn tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2" aria-label="All"
+                    checked="checked" />
+                <input id="interview" type="radio" name="my_tabs_1"
+                    class="filter-btn tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2"
+                    aria-label="Interview" />
+                <input id="rejected" type="radio" name="my_tabs_1"
+                    class="filter-btn tab bg-white text-xs font-semibold rounded-sm w-20 h-8 px-3 py-2"
                     aria-label="Rejected" />
             </div>
         </div>
@@ -92,11 +93,13 @@
                                 </span>
                             </p>
                             <p class="list-col-wrap text-xs color-DGray text-sm">
-                                Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.
+                                Build cross-platform mobile applications using React Native. Work on products used by
+                                millions of users worldwide.
                             </p>
                         </div>
                         <div class="mt-5 flex gap-x-2">
-                            <button class="btn btn-outline btn-success text-sm font-semibold uppercase">Interview</button>
+                            <button
+                                class="btn btn-outline btn-success text-sm font-semibold uppercase">Interview</button>
                             <button class="btn btn-outline btn-error text-sm font-semibold uppercase">Rejected</button>
                         </div>
                     </div>

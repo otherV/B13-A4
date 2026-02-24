@@ -89,6 +89,39 @@ let jobsList = [
     }
 ];
 
+let interview = [];
+let rejected = [];
+
+let totalCount = document.querySelector('#total-count');
+let interviewCount = document.querySelector('#interview-count');
+let rejectedCount = document.querySelector('#rejected-count');
+let filteCount = document.querySelector('#filter-count');
+
+function updateStats() {
+
+    interview = jobsList.filter(job => job.status === "interview");
+    rejected = jobsList.filter(job => job.status === "rejected");
+
+    totalCount.innerHTML = jobsList.length;
+    interviewCount.innerHTML = interview.length;
+    rejectedCount.innerHTML = rejected.length;
+
+    switch (document.querySelector('#stat-filter > input[type="radio"]:checked').id) {
+        case "all":
+            filteCount.innerHTML = jobsList.length;
+            break;
+        case "interview":
+            filteCount.innerHTML = interview.length;
+            break;
+        case "rejected":
+            filteCount.innerHTML = rejected.length;
+            break;
+        default:
+            break;
+    }
+
+}
+
 const jobListUl = document.querySelector('#job-list');
 
 for (const job of jobsList) {
@@ -137,7 +170,31 @@ for (const job of jobsList) {
 const trashButtons = document.querySelectorAll('.trash-btn');
 
 for (const button of trashButtons) {
-    button.addEventListener('click', function() {
-        jobListUl.removeChild(document.querySelector('#job-'+this.id))
+    button.addEventListener('click', function () {
+        jobListUl.removeChild(document.querySelector('#job-' + this.id));
+        jobsList = jobsList.filter(job => job.id != this.id);
+        updateStats();
     });
 }
+
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+for (const button of filterButtons) {
+    button.addEventListener('click', function () {
+        switch (this.id) {
+            case "all":
+                filteCount.innerHTML = jobsList.length;
+                break;
+            case "interview":
+                filteCount.innerHTML = interview.length;
+                break;
+            case "rejected":
+                filteCount.innerHTML = rejected.length;
+                break;
+            default:
+                break;
+        }
+    });
+}
+
+updateStats();
