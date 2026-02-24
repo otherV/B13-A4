@@ -92,10 +92,10 @@ let jobsList = [
 let interview = [];
 let rejected = [];
 
-let totalCount = document.querySelector('#total-count');
-let interviewCount = document.querySelector('#interview-count');
-let rejectedCount = document.querySelector('#rejected-count');
-let filteCount = document.querySelector('#filter-count');
+const totalCount = document.querySelector('#total-count');
+const interviewCount = document.querySelector('#interview-count');
+const rejectedCount = document.querySelector('#rejected-count');
+const filteCount = document.querySelector('#filter-count');
 
 function updateStats() {
 
@@ -124,11 +124,19 @@ function updateStats() {
 
 const jobListUl = document.querySelector('#job-list');
 
-for (const job of jobsList) {
-    let li = document.createElement('li');
-    li.id = "job-" + job.id;
-    li.className = "bg-white list-row p-6 mt-4";
-    li.innerHTML = `<div class="list-col-grow">
+function injectLists(jobArray) {
+    jobListUl.innerHTML = "";
+    for (const job of jobArray) {
+        let li = document.createElement('li');
+        li.id = "job-" + job.id;
+        li.className = "bg-white list-row p-6 mt-4";
+        let nonAppStr = "";
+        if (job.status === "not applied") {
+            nonAppStr = `<span id="non-${job.id}" class="non-applied text-sm font-medium uppercase rounded-sm w-28 h-9 px-3 py-2">
+                                    NOT APPLIED
+                                </span>`;
+        }
+        li.innerHTML = `<div class="list-col-grow">
 
                         <div class="list-title">
                             <h4 class="company-name text-lg font-semibold color-black mb-1">${job.companyName}</h4>
@@ -142,17 +150,19 @@ for (const job of jobsList) {
 
                         <div class="mt-5">
                             <p class="mb-3">
-                                <span class="non-applied text-sm font-medium uppercase rounded-sm w-28 h-9 px-3 py-2">
-                                    NOT APPLIED
-                                </span>
+                                ${nonAppStr}
                             </p>
                             <p class="list-col-wrap text-xs color-DGray text-sm">
                                 ${job.description}
                             </p>
                         </div>
-                        <div class="mt-5 flex gap-x-2">
-                            <button class="btn btn-outline btn-success text-sm font-semibold uppercase">Interview</button>
-                            <button class="btn btn-outline btn-error text-sm font-semibold uppercase">Rejected</button>
+                        <div id="status-toggle-group" class="mt-5 tabs flex gap-x-2">
+                            <input id="interview-toggle" type="radio" name="${job.id}"
+                                class="status-toggle btn btn-outline btn-success text-sm font-semibold uppercase"
+                                aria-label="Interview" />
+                            <input id="rejected-toggle" type="radio" name="${job.id}"
+                                class="status-toggle btn btn-outline btn-error text-sm font-semibold uppercase"
+                                aria-label="Rejected" />
                         </div>
                     </div>
 
@@ -164,9 +174,8 @@ for (const job of jobsList) {
                         </svg>
                     </button>`;
 
-    jobListUl.appendChild(li);
-}
-
+        jobListUl.appendChild(li);
+    }
 const trashButtons = document.querySelectorAll('.trash-btn');
 
 for (const button of trashButtons) {
@@ -177,6 +186,33 @@ for (const button of trashButtons) {
     });
 }
 
+const statusToggle = document.querySelectorAll('.status-toggle');
+
+for (const button of statusToggle) {
+    button.addEventListener('click', function () {
+        if (this.id == "interview-toggle") {
+            jobsList.find(job => job.id == this.name).status = "interview";
+            if(document.querySelector('#stat-filter > input[type="radio"]:checked').id == "rejected") {
+                document.querySelector('#job-' + this.name).remove();
+            }
+        } else {
+            jobsList.find(job => job.id == this.name).status = "rejected";
+            if(document.querySelector('#stat-filter > input[type="radio"]:checked').id == "interview") {
+                document.querySelector('#job-' + this.name).remove();
+            }
+        }
+        updateStats();
+        let nonApp = document.querySelector('#non-' + this.name);
+        if (nonApp) {
+            nonApp.remove();
+        }
+    });
+}
+}
+
+injectLists(jobsList);
+updateStats();
+
 const filterButtons = document.querySelectorAll('.filter-btn');
 
 for (const button of filterButtons) {
@@ -184,12 +220,15 @@ for (const button of filterButtons) {
         switch (this.id) {
             case "all":
                 filteCount.innerHTML = jobsList.length;
+                injectLists(jobsList);
                 break;
             case "interview":
                 filteCount.innerHTML = interview.length;
+                injectLists(interview);
                 break;
             case "rejected":
                 filteCount.innerHTML = rejected.length;
+                injectLists(rejected);
                 break;
             default:
                 break;
@@ -197,4 +236,6 @@ for (const button of filterButtons) {
     });
 }
 
-updateStats();
+
+
+
