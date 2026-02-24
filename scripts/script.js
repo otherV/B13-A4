@@ -92,6 +92,7 @@ let jobsList = [
 let interview = [];
 let rejected = [];
 let currentTab = "all";
+let currentTabCount = 8;
 
 const totalCount = document.querySelector('#total-count');
 const interviewCount = document.querySelector('#interview-count');
@@ -109,13 +110,16 @@ function updateStats() {
 
     switch (currentTab) {
         case "all":
-            filteCount.innerHTML = jobsList.length;
+            currentTabCount = jobsList.length;
+            filteCount.innerHTML = currentTabCount;
             break;
         case "interview":
-            filteCount.innerHTML = interview.length;
+            currentTabCount = interview.length;
+            filteCount.innerHTML = currentTabCount + " of " + jobsList.length;
             break;
         case "rejected":
-            filteCount.innerHTML = rejected.length;
+            currentTabCount = rejected.length;
+            filteCount.innerHTML = currentTabCount + " of " + jobsList.length;
             break;
         default:
             break;
@@ -126,6 +130,9 @@ const jobListUl = document.querySelector('#job-list');
 
 function injectLists(jobArray) {
     jobListUl.innerHTML = "";
+    let checkedValue = `checked="checked"`;
+    let badgeStrTail = ` text-sm font-medium uppercase rounded-sm w-28 h-9 px-3 py-2`;
+    let badgeStr = `non-applied` + badgeStrTail;
     let emptyLi = document.createElement('li');
     emptyLi.className = "h-96 bg-white list-row px-15 py-10 mt-4 mb-18 flex justify-center items-center";
     emptyLi.innerHTML = `<div class="text-center">
@@ -140,7 +147,7 @@ function injectLists(jobArray) {
                         </div>
                         
                     </div>`;
-    if (filteCount.innerHTML == "0") {
+    if (currentTabCount == 0) {
         jobListUl.appendChild(emptyLi);
         return;
     }
@@ -148,12 +155,16 @@ function injectLists(jobArray) {
         let li = document.createElement('li');
         li.id = "job-" + job.id;
         li.className = "bg-white list-row p-6 mt-4";
-        let checkedValue = `checked="checked"`;
-        let nonAppStr = "";
-        if (job.status === "not applied") {
-            nonAppStr = `<span id="non-${job.id}" class="non-applied text-sm font-medium uppercase rounded-sm w-28 h-9 px-3 py-2">
-                                    NOT APPLIED
-                                </span>`;
+        switch (job.status) {
+            case "interview":
+                badgeStr = `badge badge-soft badge-success` + badgeStrTail;
+                break;
+            case "rejected":
+                badgeStr = `badge badge-soft badge-error` + badgeStrTail;
+                break;
+            default:
+                badgeStr = `non-applied` + badgeStrTail;
+                break;
         }
         li.innerHTML = `<div class="list-col-grow">
 
@@ -169,7 +180,9 @@ function injectLists(jobArray) {
 
                         <div class="mt-5">
                             <p class="mb-3">
-                                ${nonAppStr}
+                                <span id="badge-${job.id}" class="${badgeStr}">
+                                    ${job.status}
+                                </span>
                             </p>
                             <p class="list-col-wrap text-xs color-DGray text-sm">
                                 ${job.description}
@@ -202,7 +215,7 @@ function injectLists(jobArray) {
             jobListUl.removeChild(document.querySelector('#job-' + this.id));
             jobsList = jobsList.filter(job => job.id != this.id);
             updateStats();
-            if (filteCount.innerHTML == "0") {
+            if (currentTabCount == 0) {
                 jobListUl.appendChild(emptyLi);
                 return;
             }
@@ -213,23 +226,25 @@ function injectLists(jobArray) {
 
     for (const button of statusToggle) {
         button.addEventListener('click', function () {
+            let currJob = document.querySelector('#job-' + this.name);
+            let currJobBadge = document.querySelector('#badge-' + this.name);
             if (this.id == "interview-toggle") {
                 jobsList.find(job => job.id == this.name).status = "interview";
+                currJobBadge.className = `badge badge-soft badge-success` + badgeStrTail;
+                currJobBadge.innerHTML = "interview";
                 if (currentTab == "rejected") {
-                    document.querySelector('#job-' + this.name).remove();
+                    currJob.remove();
                 }
             } else {
                 jobsList.find(job => job.id == this.name).status = "rejected";
+                currJobBadge.className = `badge badge-soft badge-error` + badgeStrTail;
+                currJobBadge.innerHTML = "rejected";
                 if (currentTab == "interview") {
-                    document.querySelector('#job-' + this.name).remove();
+                    currJob.remove();
                 }
             }
-            let nonApp = document.querySelector('#non-' + this.name);
-            if (nonApp) {
-                nonApp.remove();
-            }
             updateStats();
-            if (filteCount.innerHTML == "0") {
+            if (currentTabCount == 0) {
                 jobListUl.appendChild(emptyLi);
                 return;
             }
@@ -247,17 +262,20 @@ for (const button of filterButtons) {
         switch (this.id) {
             case "all":
                 currentTab = "all";
-                filteCount.innerHTML = jobsList.length;
+                currentTabCount = jobsList.length;
+                filteCount.innerHTML = currentTabCount;
                 injectLists(jobsList);
                 break;
             case "interview":
                 currentTab = "interview";
-                filteCount.innerHTML = interview.length;
+                currentTabCount = interview.length;
+                filteCount.innerHTML = currentTabCount + " of " + jobsList.length;
                 injectLists(interview);
                 break;
             case "rejected":
                 currentTab = "rejected";
-                filteCount.innerHTML = rejected.length;
+                currentTabCount = rejected.length;
+                filteCount.innerHTML = currentTabCount + " of " + jobsList.length;
                 injectLists(rejected);
                 break;
             default:
